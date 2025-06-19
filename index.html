@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CloudFeedback</title>
+  <link rel="app.py" href="">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #e0f7fa, #e1f5fe);
+      padding: 40px;
+      text-align: center;
+      color: #333;
+    }
+    h1 {
+      font-size: 2.8em;
+      color: #0277bd;
+      margin-bottom: 30px;
+      animation: fadeIn 1.5s ease;
+    }
+    form {
+      background: #ffffff;
+      padding: 50px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      display: inline-block;
+      animation: slideUp 1s ease;
+    }
+    input, textarea {
+      width: 100%;
+      max-width: 400px;
+      padding: 5px;
+      margin: 5px 0;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    input:focus, textarea:focus {
+      border-color: #00c2ff;
+      box-shadow: 0 0 8px rgba(0, 194, 255, 0.3);
+      outline: none;
+      text-align: center;
+    }
+    button {
+      padding: 12px 30px;
+      background: #00c2ff;
+      border: none;
+      border-radius: 30px;
+      color: #fff;
+      font-weight: bold;
+      font-size: 1em;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+    button:hover {
+      background: #0288d1;
+      transform: scale(1.05);
+      box-shadow: 0 4px 12px rgba(2, 136, 209, 0.3);
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(50px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <h1>Give Your Feedback</h1>
+  <form method="POST" action="http://<YOUR_EC2_PUBLIC_IP>:5000/feedback">
+    <input type="text" name="name" placeholder="Your Name" required><br>
+    <textarea name="message" placeholder="Your Feedback" rows="5" required></textarea><br>
+    <button type="submit">Submit</button>
+  </form>
+</body>
+</html>
