@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>CloudFeedback</title>
-  <link rel="app.py" href="">
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
@@ -58,6 +57,13 @@
       transform: scale(1.05);
       box-shadow: 0 4px 12px rgba(2, 136, 209, 0.3);
     }
+    .message {
+      margin-top: 30px;
+      font-size: 1.4em;
+      color: #00796b;
+      font-weight: bold;
+      display: none;
+    }
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(-20px); }
       to { opacity: 1; transform: translateY(0); }
@@ -70,10 +76,33 @@
 </head>
 <body>
   <h1>Give Your Feedback</h1>
-  <form method="POST" action="http://<YOUR_EC2_PUBLIC_IP>:5000/feedback">
+  <form id="feedbackForm">
     <input type="text" name="name" placeholder="Your Name" required><br>
     <textarea name="message" placeholder="Your Feedback" rows="5" required></textarea><br>
     <button type="submit">Submit</button>
   </form>
+  <div class="message" id="thankYouMessage"></div>
+
+  <script>
+    const form = document.getElementById('feedbackForm');
+    const messageBox = document.getElementById('thankYouMessage');
+    const messages = [
+      "Thank you for your feedback! Have a wonderful day!",
+      "Thanks! Your opinion helps us grow. Have a nice day!",
+      "You're awesome! Thanks for sharing your thoughts.",
+      "Feedback received — you're amazing! Enjoy your day!",
+      "Much appreciated! Wishing you a fantastic day ahead!"
+    ];
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      // Simulate submission (replace with fetch/XHR if needed)
+      const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+      messageBox.textContent = randomMessage;
+      messageBox.style.display = 'block';
+      form.reset();
+    });
+  </script>
 </body>
 </html>
